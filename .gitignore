@@ -1,3 +1,11 @@
+# Ignorer tous les fichiers et dossiers
+*
+
+# Ne pas ignorer le dossier src et son contenu
+!/src/
+!/src/**
+
+# Ignorer les fichiers et dossiers spécifiques aux environnements de développement
 ### IntelliJ IDEA ###
 out/
 !**/src/main/**/out/
@@ -17,10 +25,8 @@ bin/
 
 ### NetBeans ###
 /nbproject/private/
-/nbbuild/
-/dist/
-/nbdist/
-/.nb-gradle/
+.nb-gradle/
+# Aucune exception pour NetBeans, car tout doit être ignoré.
 
 ### VS Code ###
 .vscode/
