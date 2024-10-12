@@ -2,18 +2,16 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 
-public class FileTxt extends FileType{
+public class FileJson extends FileType {
 
-
-    public FileTxt(String FilePath){
-        super(FilePath);
+    public FileJson(String filePath) {
+        super(filePath);
     }
-
 
 
     @Override
     public void readFile() {
-        File file = new File(FilePath); // Crée un objet File avec le chemin spécifié
+        File file = new File(FilePath); // Utilise filePath au lieu de FilePath
 
         try (FileInputStream in = new FileInputStream(file)) { // Utilisation de try-with-resources
             int i;
@@ -34,6 +32,7 @@ public class FileTxt extends FileType{
     public void readFileReversed() {
         File file = new File(FilePath);
         try (FileInputStream in = new FileInputStream(file)) {
+            // Utilisation d'un StringBuilder pour stocker le contenu
             StringBuilder content = new StringBuilder();
             int i;
             while ((i = in.read()) != -1) {
