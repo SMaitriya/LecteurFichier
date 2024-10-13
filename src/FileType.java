@@ -11,7 +11,6 @@ public  abstract class FileType implements InterfaceReader{
     }
 
 
-
     @Override
     public  void openFile() {
         System.out.println("Overture du fichier...");

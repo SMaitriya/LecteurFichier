@@ -17,7 +17,7 @@ public class FileReader {
 
                // System.out.println(content);
 
-                 //REVERSE
+                 // REVERSE
 
                 // file.readFileReversed();
 
