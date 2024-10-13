@@ -8,26 +8,54 @@ public class FileCsv extends FileType{
         super(FilePath);
     }
 
-    public void readFile() {
-        openFile();
+    @Override
+    public String readFile() {
+        StringBuilder content = new StringBuilder();
+        File file = new File(FilePath);
 
-        System.out.println("Reading a .CSV file...");
-
-        closeFile();
-
+        try (FileInputStream in = new FileInputStream(file)) {
+            int i;
+            while ((i = in.read()) != -1) {
+                content.append((char) i);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+            return null;
+        } finally {
+            closeFile();
+        }
+        return content.toString().trim();
     }
 
     @Override
     public void readFileReversed() {
         File file = new File(FilePath);
         try (FileInputStream in = new FileInputStream(file)) {
-            // Utilisation d'un StringBuilder pour stocker le contenu
             StringBuilder content = new StringBuilder();
             int i;
             while ((i = in.read()) != -1) {
-                content.append((char) i); // Construit le contenu
+                content.append((char) i);
             }
-            // Affiche le contenu à l'envers
+
+            String[] lines = content.toString().split("\n");
+
+            for (int j = lines.length - 1; j >= 0; j--) {
+                System.out.println(lines[j]);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void readFilePalindromic() {
+        File file = new File(FilePath);
+        try (FileInputStream in = new FileInputStream(file)) {
+            StringBuilder content = new StringBuilder();
+            int i;
+            while ((i = in.read()) != -1) {
+                content.append((char) i);
+            }
             System.out.println(content.reverse().toString());
         } catch (IOException e) {
             e.printStackTrace();

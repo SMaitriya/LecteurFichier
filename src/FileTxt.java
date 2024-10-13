@@ -2,6 +2,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 
+
 public class FileTxt extends FileType{
 
 
@@ -12,23 +13,24 @@ public class FileTxt extends FileType{
 
 
     @Override
-    public void readFile() {
-        File file = new File(FilePath); // Crée un objet File avec le chemin spécifié
+    public String readFile() {
+        StringBuilder content = new StringBuilder();
+        File file = new File(FilePath);
 
-        try (FileInputStream in = new FileInputStream(file)) { // Utilisation de try-with-resources
+        try (FileInputStream in = new FileInputStream(file)) {
             int i;
-            // Lecture du fichier caractère par caractère
-            while ((i = in.read()) != -1) { // Lire jusqu'à la fin du fichier
-                System.out.print((char) i); // Affiche le caractère lu
+            while ((i = in.read()) != -1) {
+                content.append((char) i);
             }
-            System.out.println(); // Pour passer à la ligne après l'affichage complet
-
         } catch (IOException e) {
-            e.printStackTrace(); // Gérer les exceptions
+            e.printStackTrace();
+            return null;
         } finally {
-            closeFile(); // Appeler la méthode pour fermer le fichier
+            closeFile();
         }
+        return content.toString().trim();
     }
+
 
     @Override
     public void readFileReversed() {
@@ -37,9 +39,28 @@ public class FileTxt extends FileType{
             StringBuilder content = new StringBuilder();
             int i;
             while ((i = in.read()) != -1) {
-                content.append((char) i); // Construit le contenu
+                content.append((char) i);
             }
-            // Affiche le contenu à l'envers
+
+            String[] lines = content.toString().split("\n");
+
+            for (int j = lines.length - 1; j >= 0; j--) {
+                System.out.println(lines[j]);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void readFilePalindromic() {
+        File file = new File(FilePath);
+        try (FileInputStream in = new FileInputStream(file)) {
+            StringBuilder content = new StringBuilder();
+            int i;
+            while ((i = in.read()) != -1) {
+                content.append((char) i);
+            }
             System.out.println(content.reverse().toString());
         } catch (IOException e) {
             e.printStackTrace();
