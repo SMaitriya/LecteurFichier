@@ -2,7 +2,8 @@
 public class FileReader {
     public static void main(String[] args) {
 
-        String filePath = "C:\\Users\\maitr\\Desktop\\sorbonne\\java\\Cours\\tata.txt";
+        String filePath =  "src/texte.txt";   // EXEMPLE avec .txt
+       // String filePath = "src/message.json"; // EXEMPLE avec .Json
         FileType file = FileType.getFileReader(filePath);
 
         if (file != null) {
@@ -15,11 +16,11 @@ public class FileReader {
 
                 // LIRE
 
-               // System.out.println(content);
+                System.out.println(content);
 
                  // REVERSE
 
-                // file.readFileReversed();
+                 //file.readFileReversed();
 
                 // PALINDROMIC
 
@@ -36,8 +37,8 @@ public class FileReader {
 
 
         // COMPARER
-        FileType file1 = FileType.getFileReader("C:\\Users\\maitr\\Desktop\\sorbonne\\java\\Cours\\hello.txt");
-        FileType file2 = FileType.getFileReader("C:\\Users\\maitr\\Desktop\\sorbonne\\java\\Cours\\tata.txt");
+        FileType file1 = FileType.getFileReader("src/texte.txt");
+        FileType file2 = FileType.getFileReader("src/message.json");
 
         if (file1 != null && file2 != null) {
             if (file1.compareFiles(file2)) {
